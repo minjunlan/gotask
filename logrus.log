@@ -1,0 +1,9 @@
+time="2017-04-01T16:28:00+08:00" level=info msg="运行远程命令" Host=112.126.86.64 
+time="2017-04-01T16:19:00+08:00" level=info msg="运行远程命令" Host=112.126.86.64 
+test2.tar.gz" 
+time="2017-04-01T16:10:08+08:00" level=info msg="下载文件" file="/www/wwwroot/test3.tar.gz" 
+time="2017-04-01T16:10:08+08:00" level=info msg="下载文件" file="/www/wwwroot/test4.tar.gz" 
+time="2017-04-01T16:10:08+08:00" level=info msg="下载文件" file="/www/wwwroot/test5.tar.gz" 
+time="2017-04-01T16:10:08+08:00" level=info msg="下载文件" file="/www/wwwroot/test6.tar.gz
+删除" 
+time="2017-04-01T16:10:08+08:00" level=fatal msg="打开文件错误" error="file does not exist" file=<nil> 

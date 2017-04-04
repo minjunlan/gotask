@@ -1,0 +1,28 @@
+                           
+                            <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.css">
+                            <style>
+                                *{
+                                    padding: 0;
+                                    margin: 0;
+                                }
+                            </style>
+                            <div class="container-fluid">
+                                <form>
+                                    <div class="row plan">
+                                        <span class="typename">IP&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                        <div class="planname"><input type="text" name="Host" value="{{.Host}}"></div>
+                                    </div>
+                                    <div class="row plan">
+                                        <span class="typename">用户名</span>
+                                        <div class="planname"><input type="text" name="User" value="{{.User}}"></div>
+                                    </div>
+                                    <div class="row plan">
+                                        <span class="typename">密码&nbsp;&nbsp;&nbsp;</span>
+                                        <div class="planname"><input type="text" name="Password" value="{{.Password}}"></div>
+                                    </div>
+                                    <div class="row plan">
+                                        <span class="typename">端口&nbsp;&nbsp;&nbsp;</span>
+                                        <div class="planname"><input type="text" name="Port" value="{{.Port}}" placeholder="22"></div>
+                                    </div>
+                                </form>
+                            </div>
