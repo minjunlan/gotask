@@ -12,9 +12,9 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/hypersleep/easyssh"
 	"github.com/jinzhu/gorm"
-	"github.com/lanmj2004/task/common"
-	"github.com/lanmj2004/task/log"
-	"github.com/lanmj2004/task/model"
+	"github.com/minjunlan/gotask/common"
+	"github.com/minjunlan/gotask/log"
+	"github.com/minjunlan/gotask/model"
 	"github.com/robfig/cron"
 	"github.com/sirupsen/logrus"
 )

@@ -11,8 +11,8 @@ import (
 
 	"path"
 
-	"github.com/lanmj2004/task/log"
-	"github.com/lanmj2004/task/model"
+	"github.com/minjunlan/gotask/log"
+	"github.com/minjunlan/gotask/model"
 	"github.com/pkg/sftp"
 	"github.com/sirupsen/logrus"
 	"golang.org/x/crypto/ssh"
