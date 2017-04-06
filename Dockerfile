@@ -1,16 +1,17 @@
-FROM golang:latest
+FROM golang:1.8-onbuild
 
-RUN mkdir -p /go/src/web-app
-WORKDIR /go/src/web-app
-COPY . /go/src/web-app
+RUN mkdir -p /go/src/github.com/lanmj2004/task
+WORKDIR /go/src/github.com/lanmj2004/task
+COPY . /go/src/github.com/lanmj2004/task
 
-RUN go get github.com/codegangsta/gin
+VOLUME $PWD:/go/src/github.com/lanmj2004/task
+
+
 RUN go-wrapper download
 RUN go-wrapper install
 
-ENV PORT 8080
+ENV PORT 24115
 # 给主机暴露 8080 端口，这样外部网络可以访问你的应用
-EXPOSE 8080 3030
-CMD gin run
+EXPOSE 24115
 # 告诉 Docker 启动容器运行的命令
 CMD ["go-wrapper", "run"]
