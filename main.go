@@ -9,6 +9,8 @@ import (
 
 	"strings"
 
+	"fmt"
+
 	"github.com/gin-gonic/gin"
 	"github.com/hypersleep/easyssh"
 	"github.com/jinzhu/gorm"
@@ -127,6 +129,7 @@ func main() {
 	})
 
 	r.POST("/addCron", func(c *gin.Context) {
+		fmt.Printf("%v \r\n", c)
 		//得到form值
 		f := make(map[string]string)
 		f["name"] = c.PostForm("name")
@@ -138,18 +141,16 @@ func main() {
 		f["sType"] = c.PostForm("sType")
 		f["sBody"] = c.PostForm("sBody")
 		f["serverid"] = c.PostForm("serverid")
-		log.Log.WithFields(logrus.Fields{
-			"form": f,
-		}).Fatal("添加任务")
+		fmt.Printf("from:%#v \r\n", f)
+
 		//添加 定时
 		opportunity, corn := RunCron(cron, &f)
-		log.Log.WithFields(logrus.Fields{
-			"opportunity": opportunity,
-			"corn":        corn,
-		}).Fatal("添加任务")
+		fmt.Printf("%#v \r\n", opportunity)
 		id, _ := strconv.Atoi(f["serverid"])
+		fmt.Printf("%#v \r\n", id)
 		//插入数据库
 		task := model.Task{Name: f["name"], Ntype: f["type"], Opportunity: opportunity, Time: time.Now().Unix(), Cron: corn, Stype: f["sType"], Sbody: f["sBody"], ServerId: uint(id)}
+		fmt.Printf("task:%#v \r\n", task)
 		if db.NewRecord(task) {
 			db.Create(&task)
 			//返回值
@@ -179,6 +180,7 @@ func main() {
 
 // RunCron ...
 func RunCron(cron *cron.Cron, f *map[string]string) (string, string) {
+
 	str := ""
 	msg := ""
 	switch form := *f; form["type"] {
@@ -211,6 +213,7 @@ func RunCron(cron *cron.Cron, f *map[string]string) (string, string) {
 		msg = "每月的，" + form["where1"] + "日" + form["hour"] + "点" + form["minute"] + "分钟运行"
 
 	}
+
 	cron.AddFunc(str, func() {
 		form := *f
 		switch form["sType"] {
