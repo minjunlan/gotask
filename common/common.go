@@ -103,19 +103,29 @@ func download(sftp *sftp.Client, savepath string, filepath string, ch chan struc
 	}
 
 	buf := make([]byte, 1024*1024) // 读 1M 数据
-	savefile, _ := os.Create(path.Join(savepath, info.Name()))
+
+	savefile, err := os.OpenFile(path.Join(savepath, info.Name()), os.O_RDWR|os.O_CREATE|os.O_TRUNC, os.ModePerm)
+	if err != nil {
+		log.Log.WithFields(logrus.Fields{
+			"savefile": savefile,
+			"error":    err,
+		}).Info("创建文件错误！")
+	}
 	for {
 		n, err1 := file.Read(buf)
-		if n == 0 && err1 == io.EOF {
+		if n == 0 || err1 == io.EOF {
 			savefile.Close()
 			break
 		}
-		_, err := savefile.Write(buf)
+		n1, err := savefile.Write(buf)
 		//err = ioutil.WriteFile(path.Join(savepath, info.Name()), buf, os.ModePerm)
 		if err != nil {
 			log.Log.WithFields(logrus.Fields{
-				"error": err,
-			}).Fatal("写文件错误")
+				"n1":     n1,
+				"error":  err,
+				"error1": err1,
+				"n":      n,
+			}).Info("写文件错误！")
 			return
 		}
 	}
