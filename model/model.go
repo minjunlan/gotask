@@ -11,7 +11,7 @@ var DB *gorm.DB
 
 // Init 连接数据库
 func Init() *gorm.DB {
-	db, err := gorm.Open("mysql", "root:123456@tcp(0.0.0.0:3306)/task?charset=utf8&parseTime=True&loc=Local")
+	db, err := gorm.Open("mysql", "root:123456@tcp(192.168.1.249:3306)/task?charset=utf8&parseTime=True&loc=Local")
 	if err != nil {
 		fmt.Println("数据库链接失败")
 	}
